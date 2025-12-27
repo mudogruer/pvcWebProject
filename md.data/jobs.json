@@ -1,0 +1,10 @@
+[
+  { "id": "JOB-1024", "name": "Yatak Odası Takımı", "customer": "Mert İç Mimarlık", "owner": "Ayşe Demir", "status": "Üretimde", "dueDate": "2025-12-25", "budget": "₺240,000" },
+  { "id": "JOB-1040", "name": "Ofis Bölme Duvarı", "customer": "Nova Yapı", "owner": "Burak Aksu", "status": "Keşif", "dueDate": "2025-12-28", "budget": "₺95,000" },
+  { "id": "JOB-1031", "name": "Vestiyer Dolabı", "customer": "Atlas Mobilya", "owner": "Elif Tan", "status": "Gecikmiş", "dueDate": "2025-12-20", "budget": "₺55,000" },
+  { "id": "JOB-1055", "name": "Mutfak Tezgahı", "customer": "Ada İnşaat", "owner": "Serkan Kılıç", "status": "Montaj", "dueDate": "2025-12-30", "budget": "₺180,000" },
+  { "id": "JOB-1062", "name": "Banyo Dolapları", "customer": "Luna Home", "owner": "Ece Korkmaz", "status": "Üretimde", "dueDate": "2026-01-02", "budget": "₺120,000" },
+  { "id": "JOB-1071", "name": "Ofis Masa Seti", "customer": "Aria Teknoloji", "owner": "Cem Güneş", "status": "Keşif", "dueDate": "2026-01-10", "budget": "₺210,000" },
+  { "id": "JOB-1078", "name": "Giyinme Odası", "customer": "Mira Mimarlık", "owner": "Deniz Yılmaz", "status": "Üretimde", "dueDate": "2026-01-06", "budget": "₺260,000" }
+]
+

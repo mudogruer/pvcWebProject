@@ -1,0 +1,8 @@
+[
+  { "id": "STK-101", "name": "MDF 18mm", "sku": "MDF-18", "unit": "plaka", "onHand": 120, "reserved": 45, "critical": 80, "supplier": "Nova Orman" },
+  { "id": "STK-102", "name": "Laminat Kapak", "sku": "LAM-KPK", "unit": "adet", "onHand": 260, "reserved": 40, "critical": 150, "supplier": "Dekor Panel" },
+  { "id": "STK-103", "name": "Menteşe Soft-Close", "sku": "MNT-SFT", "unit": "adet", "onHand": 320, "reserved": 210, "critical": 250, "supplier": "HingePro" },
+  { "id": "STK-104", "name": "Ray Takımı 45cm", "sku": "RAY-45", "unit": "adet", "onHand": 180, "reserved": 110, "critical": 140, "supplier": "SlideTech" },
+  { "id": "STK-105", "name": "Lake Boya (Beyaz)", "sku": "LKB-01", "unit": "kg", "onHand": 35, "reserved": 10, "critical": 20, "supplier": "Colora" }
+]
+

@@ -1,0 +1,43 @@
+[
+  {
+    "id": "CST-11",
+    "name": "Mert İç Mimarlık",
+    "segment": "B2B",
+    "location": "İstanbul",
+    "jobs": 12,
+    "contact": "mert@mimarlik.com"
+  },
+  {
+    "id": "CST-12",
+    "name": "Nova Yapı",
+    "segment": "B2B",
+    "location": "Ankara",
+    "jobs": 8,
+    "contact": "info@novayapi.com"
+  },
+  {
+    "id": "CST-13",
+    "name": "Luna Home",
+    "segment": "B2C",
+    "location": "İzmir",
+    "jobs": 5,
+    "contact": "destek@lunahome.com"
+  },
+  {
+    "id": "CST-14",
+    "name": "Aria Teknoloji",
+    "segment": "B2B",
+    "location": "Kocaeli",
+    "jobs": 6,
+    "contact": "proje@ariatek.com",
+    "deleted": true
+  },
+  {
+    "id": "CST-15",
+    "name": "Mira Mimarlık",
+    "segment": "B2B",
+    "location": "Bursa",
+    "jobs": 4,
+    "contact": "hello@miramimarlik.com"
+  }
+]
