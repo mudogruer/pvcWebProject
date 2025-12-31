@@ -23,6 +23,20 @@ def list_customers():
 def create_customer(payload: CustomerIn):
   customers = load_json("customers.json")
   new_id = f"CST-{str(uuid.uuid4())[:8].upper()}"
+  
+  # Generate unique account code (Cari Kod) if not present
+  existing_codes = {c.get("accountCode") for c in customers if c.get("accountCode")}
+  
+  # Simple strategy: C-{Year}-{Random4}
+  import random
+  from datetime import datetime
+  year = datetime.now().year
+  
+  while True:
+      code = f"C-{year}-{random.randint(1000, 9999)}"
+      if code not in existing_codes:
+          break
+
   new_item = {
       "id": new_id,
       "name": payload.name,
@@ -31,6 +45,7 @@ def create_customer(payload: CustomerIn):
       "jobs": 0,
       "contact": payload.contact,
       "deleted": False,
+      "accountCode": code
   }
   customers.append(new_item)
   save_json("customers.json", customers)

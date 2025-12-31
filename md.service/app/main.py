@@ -5,6 +5,7 @@ from .routers import (
     archive,
     customers,
     dashboard,
+    documents,
     finance,
     jobs,
     planning,
@@ -13,6 +14,7 @@ from .routers import (
     settings,
     stock,
     tasks,
+    colors,
 )
 
 app = FastAPI(
@@ -40,6 +42,8 @@ app.include_router(finance.router)
 app.include_router(archive.router)
 app.include_router(reports.router)
 app.include_router(settings.router)
+app.include_router(colors.router)
+app.include_router(documents.router)
 
 
 @app.get("/health", tags=["meta"])

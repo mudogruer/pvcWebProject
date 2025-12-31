@@ -19,8 +19,17 @@ def load_json(filename: str) -> Any:
   path = data_dir / filename
   if not path.exists():
     raise FileNotFoundError(f"Data file not found: {path}")
-  with path.open(encoding="utf-8") as f:
-    return json.load(f)
+  
+  # Try different encodings
+  for encoding in ["utf-8", "utf-8-sig", "utf-16", "latin-1"]:
+    try:
+      with path.open(encoding=encoding) as f:
+        return json.load(f)
+    except (UnicodeDecodeError, json.JSONDecodeError):
+      continue
+  
+  # If all encodings fail, raise error
+  raise ValueError(f"Cannot decode JSON file: {path}")
 
 
 def save_json(filename: str, data: Any) -> None:
@@ -29,4 +38,5 @@ def save_json(filename: str, data: Any) -> None:
   path = data_dir / filename
   with path.open("w", encoding="utf-8") as f:
     json.dump(data, f, ensure_ascii=False, indent=2)
+
 
