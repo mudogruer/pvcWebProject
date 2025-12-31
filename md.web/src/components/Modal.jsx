@@ -1,9 +1,9 @@
-const Modal = ({ open, title, children, actions, onClose }) => {
+const Modal = ({ open, title, children, actions, onClose, size = 'medium' }) => {
   if (!open) return null;
 
   return (
     <div className="modal-backdrop" role="dialog" aria-modal="true" aria-label={title || 'Dialog'}>
-      <div className="modal" onClick={(e) => e.stopPropagation()}>
+      <div className={`modal modal-${size}`} onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <h3 className="modal-title">{title}</h3>
           <button className="modal-close" type="button" onClick={onClose} aria-label="Kapat">

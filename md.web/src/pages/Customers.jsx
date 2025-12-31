@@ -49,7 +49,7 @@ const Customers = () => {
         setCustomers((prev) => [newCustomer, ...prev]);
       }
       setForm({ name: '', segment: 'B2B', location: '', contact: '' });
-      setShowCreate(false);
+      setShowModal(false);
     } catch (err) {
       setError(err.message || 'Müşteri kaydı başarısız');
     } finally {
@@ -112,7 +112,7 @@ const Customers = () => {
           <>
             {editing ? (
               <button
-                className="btn btn-secondary"
+                className="btn btn-secondary btn-danger"
                 type="button"
                 onClick={() => setConfirmTarget(editing)}
                 disabled={submitting}
@@ -193,7 +193,7 @@ const Customers = () => {
               Vazgeç
             </button>
             <button
-              className="btn btn-primary"
+              className="btn btn-danger"
               type="button"
               onClick={() => {
                 if (confirmTarget) {

@@ -1,4 +1,4 @@
-const DataTable = ({ columns, rows = [], getKey = (row) => row.id || row.key || row.name }) => (
+const DataTable = ({ columns, rows = [], getKey = (row) => row.id || row.key || row.name, onRowClick }) => (
   <div className="table-container">
     <table className="table">
       <thead>
@@ -21,7 +21,11 @@ const DataTable = ({ columns, rows = [], getKey = (row) => row.id || row.key || 
           </tr>
         ) : (
           rows.map((row) => (
-            <tr key={getKey(row)}>
+            <tr
+              key={getKey(row)}
+              onClick={onRowClick ? () => onRowClick(row) : undefined}
+              style={onRowClick ? { cursor: 'pointer' } : undefined}
+            >
               {columns.map((column) => (
                 <td key={column.accessor}>
                   {column.render ? column.render(row[column.accessor], row) : row[column.accessor]}

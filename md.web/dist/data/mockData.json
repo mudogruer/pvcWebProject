@@ -40,11 +40,12 @@
     { "id": "PLN-03", "title": "Teslim - Luna Home", "date": "2025-12-30", "type": "Teslim", "owner": "Ece Korkmaz", "location": "Bornova" }
   ],
   "stockItems": [
-    { "id": "STK-101", "name": "MDF 18mm", "sku": "MDF-18", "unit": "plaka", "onHand": 120, "reserved": 45, "critical": 80, "supplier": "Nova Orman" },
-    { "id": "STK-102", "name": "Laminat Kapak", "sku": "LAM-KPK", "unit": "adet", "onHand": 260, "reserved": 40, "critical": 150, "supplier": "Dekor Panel" },
-    { "id": "STK-103", "name": "Menteşe Soft-Close", "sku": "MNT-SFT", "unit": "adet", "onHand": 320, "reserved": 210, "critical": 250, "supplier": "HingePro" },
-    { "id": "STK-104", "name": "Ray Takımı 45cm", "sku": "RAY-45", "unit": "adet", "onHand": 180, "reserved": 110, "critical": 140, "supplier": "SlideTech" },
-    { "id": "STK-105", "name": "Lake Boya (Beyaz)", "sku": "LKB-01", "unit": "kg", "onHand": 35, "reserved": 10, "critical": 20, "supplier": "Colora" }
+    { "id": "STK-101", "name": "MDF 18mm", "sku": "MDF-18", "unit": "plaka", "color": "Doğal", "onHand": 120, "reserved": 45, "critical": 80, "supplier": "Nova Orman" },
+    { "id": "STK-102", "name": "Laminat Kapak", "sku": "LAM-KPK", "unit": "adet", "color": "Beyaz", "onHand": 260, "reserved": 40, "critical": 150, "supplier": "Dekor Panel" },
+    { "id": "STK-102B", "name": "Laminat Kapak", "sku": "LAM-KPK", "unit": "adet", "color": "Antrasit", "onHand": 180, "reserved": 30, "critical": 120, "supplier": "Dekor Panel" },
+    { "id": "STK-103", "name": "Menteşe Soft-Close", "sku": "MNT-SFT", "unit": "adet", "color": "Nikel", "onHand": 320, "reserved": 210, "critical": 250, "supplier": "HingePro" },
+    { "id": "STK-104", "name": "Ray Takımı 45cm", "sku": "RAY-45", "unit": "adet", "color": "Çelik", "onHand": 180, "reserved": 110, "critical": 140, "supplier": "SlideTech" },
+    { "id": "STK-105", "name": "Lake Boya", "sku": "LKB-01", "unit": "kg", "color": "Beyaz", "onHand": 35, "reserved": 10, "critical": 20, "supplier": "Colora" }
   ],
   "stockMovements": [
     { "id": "MOV-501", "date": "2025-12-22", "item": "MDF 18mm", "change": -30, "reason": "Kesim", "operator": "Ali Kurtuluş" },
@@ -98,6 +99,13 @@
     { "id": "SET-02", "label": "SMS bildirimleri", "value": false, "description": "Kritik stok ve gecikmelerde SMS gönder" },
     { "id": "SET-03", "label": "Otomatik yedekleme", "value": true, "description": "Günlük veri yedeği oluştur" }
   ],
+  "jobRoles": [
+    { "id": "ROLE-01", "name": "İç Mimari", "description": "Konsept, iç mekan çözümü" },
+    { "id": "ROLE-02", "name": "Mobilya", "description": "Mobilya üretim ve kurulum" },
+    { "id": "ROLE-03", "name": "Cam/Alüminyum", "description": "Doğrama, cam, alüminyum işleri" },
+    { "id": "ROLE-04", "name": "Elektrik", "description": "Elektrik tesisatı ve montaj" }
+  ],
+  "jobLogs": [],
   "jobs": [
     { "id": "JOB-1024", "name": "Yatak Odası Takımı", "customer": "Mert İç Mimarlık", "owner": "Ayşe Demir", "status": "Üretimde", "dueDate": "2025-12-25", "budget": "₺240,000" },
     { "id": "JOB-1040", "name": "Ofis Bölme Duvarı", "customer": "Nova Yapı", "owner": "Burak Aksu", "status": "Keşif", "dueDate": "2025-12-28", "budget": "₺95,000" },

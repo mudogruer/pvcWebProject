@@ -1,131 +1,260 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PageHeader from '../components/PageHeader';
-
-const defaultForm = {
-  name: '',
-  customer: '',
-  owner: '',
-  dueDate: '',
-  budget: '',
-  notes: '',
-};
+import { createCustomer, createJob, getCustomers } from '../services/dataService';
 
 const JobNew = () => {
-  const [form, setForm] = useState(defaultForm);
+  const [customers, setCustomers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
   const [createdJob, setCreatedJob] = useState(null);
+  const [form, setForm] = useState({
+    customerId: '',
+    customerName: '',
+    title: '',
+    startType: 'OLCU',
+    newCustomer: false,
+    segment: 'B2B',
+    location: '',
+    contact: '',
+  });
 
-  const updateField = (field, value) => {
-    setForm((prev) => ({ ...prev, [field]: value }));
-  };
+  useEffect(() => {
+    const load = async () => {
+      try {
+        setLoading(true);
+        setError('');
+        const data = await getCustomers();
+        setCustomers(data.filter((c) => !c.deleted));
+      } catch (err) {
+        setError(err.message || 'Müşteriler alınamadı');
+      } finally {
+        setLoading(false);
+      }
+    };
+    load();
+  }, []);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setCreatedJob({
-      ...form,
-      id: `JOB-${Math.floor(Math.random() * 9000) + 1000}`,
-      status: 'Keşif',
-    });
-    setForm(defaultForm);
+    try {
+      setSubmitting(true);
+      setError('');
+
+      let customerId = form.customerId;
+      let customerName = form.customerName;
+
+      if (form.newCustomer) {
+        const created = await createCustomer({
+          name: form.customerName,
+          segment: form.segment,
+          location: form.location,
+          contact: form.contact,
+        });
+        customerId = created.id;
+        customerName = created.name;
+        setCustomers((prev) => [created, ...prev]);
+      }
+
+      const job = await createJob({
+        customerId,
+        customerName,
+        title: form.title,
+        startType: form.startType,
+      });
+      setCreatedJob(job);
+      setForm({
+        customerId: '',
+        customerName: '',
+        title: '',
+        startType: 'OLCU',
+        newCustomer: false,
+        segment: 'B2B',
+        location: '',
+        contact: '',
+      });
+    } catch (err) {
+      setError(err.message || 'İş oluşturulamadı');
+    } finally {
+      setSubmitting(false);
+    }
   };
+
+  const selectedCustomer = customers.find((c) => c.id === form.customerId);
 
   return (
     <div>
-      <PageHeader
-        title="Yeni İş Başlat"
-        subtitle="Keşif, üretim ve montaj sürecini başlatmak için iş açın"
-      />
+      <PageHeader title="Yeni İş Başlat (Wizard)" subtitle="Müşteri seç ve başlangıç türünü belirle" />
+
+      {error ? (
+        <div className="card error-card">
+          <div className="error-title">Hata</div>
+          <div className="error-message">{error}</div>
+        </div>
+      ) : null}
 
       <form className="card" onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label className="form-label" htmlFor="name">
-            İş Adı
-          </label>
-          <input
-            id="name"
-            className="form-input"
-            placeholder="Örn: Ofis Mobilyası Projesi"
-            value={form.name}
-            onChange={(event) => updateField('name', event.target.value)}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label className="form-label" htmlFor="customer">
-            Müşteri
-          </label>
-          <input
-            id="customer"
-            className="form-input"
-            placeholder="Müşteri adı"
-            value={form.customer}
-            onChange={(event) => updateField('customer', event.target.value)}
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <label className="form-label" htmlFor="owner">
-            Sorumlu Kişi
-          </label>
-          <input
-            id="owner"
-            className="form-input"
-            placeholder="İşi yönetecek kişi"
-            value={form.owner}
-            onChange={(event) => updateField('owner', event.target.value)}
-            required
-          />
-        </div>
-
         <div className="grid grid-2">
           <div className="form-group">
-            <label className="form-label" htmlFor="dueDate">
-              Termin Tarihi
+            <label className="form-label" htmlFor="job-title">
+              İş Başlığı
             </label>
             <input
-              id="dueDate"
+              id="job-title"
               className="form-input"
-              type="date"
-              value={form.dueDate}
-              onChange={(event) => updateField('dueDate', event.target.value)}
+              placeholder="Örn: Balkon PVC Doğrama"
+              value={form.title}
+              onChange={(e) => setForm((prev) => ({ ...prev, title: e.target.value }))}
               required
             />
           </div>
           <div className="form-group">
-            <label className="form-label" htmlFor="budget">
-              Bütçe
+            <label className="form-label" htmlFor="start-type">
+              Başlatma Türü
             </label>
-            <input
-              id="budget"
-              className="form-input"
-              type="text"
-              placeholder="₺"
-              value={form.budget}
-              onChange={(event) => updateField('budget', event.target.value)}
-            />
+            <select
+              id="start-type"
+              className="form-select"
+              value={form.startType}
+              onChange={(e) => setForm((prev) => ({ ...prev, startType: e.target.value }))}
+            >
+              <option value="OLCU">Ölçü ile Başlat</option>
+              <option value="FIYATLANDIRMA">Fiyatlandırma ile Başlat</option>
+            </select>
           </div>
         </div>
 
-        <div className="form-group">
-          <label className="form-label" htmlFor="notes">
-            Notlar
-          </label>
-          <textarea
-            id="notes"
-            className="form-textarea"
-            placeholder="Keşif detayları, ölçüler, özel istekler..."
-            value={form.notes}
-            onChange={(event) => updateField('notes', event.target.value)}
-          />
+        <div className="card" style={{ marginTop: 12 }}>
+          <div className="card-header">
+            <h3 className="card-title">Müşteri</h3>
+          </div>
+          <div className="card-body" style={{ display: 'flex', gap: 16, flexDirection: 'column' }}>
+            <label className="form-label" style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+              <input
+                type="radio"
+                name="customer-mode"
+                checked={!form.newCustomer}
+                onChange={() => setForm((prev) => ({ ...prev, newCustomer: false }))}
+              />
+              Mevcut müşteriden seç
+            </label>
+            {!form.newCustomer ? (
+              <select
+                className="form-select"
+                value={form.customerId}
+                onChange={(e) => {
+                  const id = e.target.value;
+                  const found = customers.find((c) => c.id === id);
+                  setForm((prev) => ({
+                    ...prev,
+                    customerId: id,
+                    customerName: found?.name || '',
+                  }));
+                }}
+                required
+              >
+                <option value="">Müşteri seçin</option>
+                {customers.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.name} ({c.segment})
+                  </option>
+                ))}
+              </select>
+            ) : null}
+
+            <label className="form-label" style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+              <input
+                type="radio"
+                name="customer-mode"
+                checked={form.newCustomer}
+                onChange={() =>
+                  setForm((prev) => ({
+                    ...prev,
+                    newCustomer: true,
+                    customerId: '',
+                    customerName: '',
+                  }))
+                }
+              />
+              Yeni müşteri oluştur
+            </label>
+
+            {form.newCustomer ? (
+              <div className="grid grid-2">
+                <div className="form-group">
+                  <label className="form-label" htmlFor="new-name">
+                    Ad
+                  </label>
+                  <input
+                    id="new-name"
+                    className="form-input"
+                    value={form.customerName}
+                    onChange={(e) => setForm((prev) => ({ ...prev, customerName: e.target.value }))}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="form-label" htmlFor="new-segment">
+                    Segment
+                  </label>
+                  <select
+                    id="new-segment"
+                    className="form-select"
+                    value={form.segment}
+                    onChange={(e) => setForm((prev) => ({ ...prev, segment: e.target.value }))}
+                  >
+                    <option value="B2B">B2B</option>
+                    <option value="B2C">B2C</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label className="form-label" htmlFor="new-location">
+                    Lokasyon
+                  </label>
+                  <input
+                    id="new-location"
+                    className="form-input"
+                    value={form.location}
+                    onChange={(e) => setForm((prev) => ({ ...prev, location: e.target.value }))}
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="form-label" htmlFor="new-contact">
+                    İletişim
+                  </label>
+                  <input
+                    id="new-contact"
+                    className="form-input"
+                    value={form.contact}
+                    onChange={(e) => setForm((prev) => ({ ...prev, contact: e.target.value }))}
+                  />
+                </div>
+              </div>
+            ) : selectedCustomer ? (
+              <div className="card subtle-card">
+                <div className="metric-row">
+                  <span className="metric-label">Segment</span>
+                  <span className="metric-value">{selectedCustomer.segment}</span>
+                </div>
+                <div className="metric-row">
+                  <span className="metric-label">Lokasyon</span>
+                  <span className="metric-value">{selectedCustomer.location}</span>
+                </div>
+                <div className="metric-row">
+                  <span className="metric-label">İletişim</span>
+                  <span className="metric-value">{selectedCustomer.contact}</span>
+                </div>
+              </div>
+            ) : null}
+          </div>
         </div>
 
-        <div className="page-actions" style={{ marginTop: 8 }}>
-          <button className="btn btn-secondary" type="button" onClick={() => setForm(defaultForm)}>
+        <div className="page-actions" style={{ marginTop: 16 }}>
+          <button className="btn btn-secondary" type="button" onClick={() => setCreatedJob(null)}>
             Temizle
           </button>
-          <button className="btn btn-primary" type="submit">
-            Kaydet ve Başlat
+          <button className="btn btn-primary" type="submit" disabled={submitting}>
+            {submitting ? 'Kaydediliyor...' : 'Kaydet ve Başlat'}
           </button>
         </div>
       </form>
@@ -139,24 +268,20 @@ const JobNew = () => {
           <div className="card-body">
             <div className="metric-list">
               <div className="metric-row">
-                <span className="metric-label">İş Adı</span>
-                <span className="metric-value">{createdJob.name}</span>
+                <span className="metric-label">İş Başlığı</span>
+                <span className="metric-value">{createdJob.title}</span>
               </div>
               <div className="metric-row">
                 <span className="metric-label">Müşteri</span>
-                <span className="metric-value">{createdJob.customer}</span>
+                <span className="metric-value">{createdJob.customerName}</span>
               </div>
               <div className="metric-row">
-                <span className="metric-label">Sorumlu</span>
-                <span className="metric-value">{createdJob.owner}</span>
+                <span className="metric-label">Durum</span>
+                <span className="metric-value">{createdJob.status}</span>
               </div>
               <div className="metric-row">
-                <span className="metric-label">Termin</span>
-                <span className="metric-value">{createdJob.dueDate || 'Belirtilmedi'}</span>
-              </div>
-              <div className="metric-row">
-                <span className="metric-label">Bütçe</span>
-                <span className="metric-value">{createdJob.budget || 'Belirtilmedi'}</span>
+                <span className="metric-label">Başlatma</span>
+                <span className="metric-value">{createdJob.startType}</span>
               </div>
             </div>
           </div>

@@ -13,7 +13,7 @@ export const NAV_ITEMS = [
         collapsible: true,
         children: [
           { label: 'İş Listesi', path: '/isler/list' },
-          { label: 'Yeni İş Başlat', path: '/isler/yeni' },
+          { label: 'İş Kolları', path: '/isler/kollar' },
           { label: 'Keşif/Ölçü Takvimi', path: '/isler/takvim' },
           { label: 'Üretim Planı', path: '/isler/uretim-plani' },
           { label: 'Montaj/Sevkiyat', path: '/isler/montaj-sevkiyat' },
@@ -37,6 +37,7 @@ export const NAV_ITEMS = [
           { label: 'Stok Hareketleri', path: '/stok/hareketler' },
           { label: 'Kritik Stok', path: '/stok/kritik' },
           { label: 'Rezervasyonlar', path: '/stok/rezervasyonlar' },
+          { label: 'Renkler', path: '/stok/renkler' },
         ],
       },
       {

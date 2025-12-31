@@ -24,6 +24,8 @@ import StokHareketler from './pages/StokHareketler';
 import StokKritik from './pages/StokKritik';
 import StokList from './pages/StokList';
 import StokRezervasyonlar from './pages/StokRezervasyonlar';
+import IsKollari from './pages/IsKollari';
+import Renkler from './pages/Renkler';
 
 const App = () => (
   <BrowserRouter>
@@ -38,6 +40,7 @@ const App = () => (
           <Route path="takvim" element={<IslerTakvim />} />
           <Route path="uretim-plani" element={<IslerUretimPlani />} />
           <Route path="montaj-sevkiyat" element={<IslerMontajSevkiyat />} />
+          <Route path="kollar" element={<IsKollari />} />
         </Route>
         <Route path="gorevler" element={<Gorevler />} />
         <Route path="musteriler" element={<Customers />} />
@@ -48,6 +51,7 @@ const App = () => (
           <Route path="hareketler" element={<StokHareketler />} />
           <Route path="kritik" element={<StokKritik />} />
           <Route path="rezervasyonlar" element={<StokRezervasyonlar />} />
+          <Route path="renkler" element={<Renkler />} />
         </Route>
         <Route path="satinalma">
           <Route index element={<Satinalma />} />
