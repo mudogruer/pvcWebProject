@@ -5,7 +5,9 @@
     "segment": "B2B",
     "location": "İstanbul",
     "jobs": 12,
-    "contact": "mert@mimarlik.com"
+    "contact": "mert@mimarlik.com",
+    "deleted": true,
+    "accountCode": "C-2024-1001"
   },
   {
     "id": "CST-12",
@@ -13,7 +15,8 @@
     "segment": "B2B",
     "location": "Ankara",
     "jobs": 8,
-    "contact": "info@novayapi.com"
+    "contact": "info@novayapi.com",
+    "accountCode": "C-2024-1002"
   },
   {
     "id": "CST-13",
@@ -21,7 +24,8 @@
     "segment": "B2C",
     "location": "İzmir",
     "jobs": 5,
-    "contact": "destek@lunahome.com"
+    "contact": "destek@lunahome.com",
+    "accountCode": "C-2024-1003"
   },
   {
     "id": "CST-14",
@@ -30,7 +34,8 @@
     "location": "Kocaeli",
     "jobs": 6,
     "contact": "proje@ariatek.com",
-    "deleted": true
+    "deleted": true,
+    "accountCode": "C-2024-1004"
   },
   {
     "id": "CST-15",
@@ -38,6 +43,57 @@
     "segment": "B2B",
     "location": "Bursa",
     "jobs": 4,
-    "contact": "hello@miramimarlik.com"
+    "contact": "hello@miramimarlik.com",
+    "accountCode": "C-2024-1005"
+  },
+  {
+    "id": "CST-CB67C570",
+    "name": "Mudo Tech",
+    "segment": "B2B",
+    "location": "Nevsehir",
+    "jobs": 0,
+    "contact": "mudo@mudotech.dev",
+    "deleted": false,
+    "accountCode": "C-2024-5670"
+  },
+  {
+    "id": "CST-13DC9D1D",
+    "name": "Nevsehir Pimapen",
+    "segment": "B2B",
+    "location": "Nevsehir",
+    "jobs": 0,
+    "contact": "batuhan@bilgili.xyz",
+    "deleted": false,
+    "accountCode": "C-2024-9D1D"
+  },
+  {
+    "id": "CST-7BF96166",
+    "name": "Evren",
+    "segment": "B2B",
+    "location": "kayseri",
+    "jobs": 0,
+    "contact": "evren@bilgili",
+    "deleted": false,
+    "accountCode": "C-2024-6166"
+  },
+  {
+    "id": "CST-CE1CE116",
+    "name": "Hüsnü Amca",
+    "segment": "B2B",
+    "location": "Nevs",
+    "jobs": 0,
+    "contact": "hdeneme@den",
+    "deleted": true,
+    "accountCode": "C-2024-E116"
+  },
+  {
+    "id": "CST-77BC35C2",
+    "name": "batuhan b",
+    "segment": "B2B",
+    "location": "",
+    "jobs": 0,
+    "contact": "",
+    "deleted": false,
+    "accountCode": "C-2024-35C2"
   }
 ]

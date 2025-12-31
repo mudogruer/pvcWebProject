@@ -1,0 +1,54 @@
+[
+  {
+    "id": "DOC-47A9A302",
+    "jobId": "JOB-0DE5B696",
+    "type": "teknik",
+    "filename": "DOC-47A9A302_20251230144401.pdf",
+    "originalName": "cover-letter-born.pdf",
+    "path": "documents/teknik/DOC-47A9A302_20251230144401.pdf",
+    "mimeType": "application/pdf",
+    "size": 43520,
+    "uploadedBy": "Kullanıcı",
+    "uploadedAt": "2025-12-30T14:44:01.528742Z",
+    "description": "Teknik çizim"
+  },
+  {
+    "id": "DOC-2324B243",
+    "jobId": "JOB-0DE5B696",
+    "type": "olcu",
+    "filename": "DOC-2324B243_20251230144354.pdf",
+    "originalName": "cover-letter-knowunity.pdf",
+    "path": "documents/olcu/DOC-2324B243_20251230144354.pdf",
+    "mimeType": "application/pdf",
+    "size": 34697,
+    "uploadedBy": "Kullanıcı",
+    "uploadedAt": "2025-12-30T14:43:54.509487Z",
+    "description": "Ölçü taslağı"
+  },
+  {
+    "id": "DOC-001",
+    "jobId": "JOB-EXAMPLE",
+    "type": "olcu",
+    "filename": "ornek_olcu_taslak.pdf",
+    "originalName": "Ölçü Taslağı Örnek.pdf",
+    "path": "documents/olcu/ornek_olcu_taslak.pdf",
+    "mimeType": "application/pdf",
+    "size": 102400,
+    "uploadedBy": "Sistem",
+    "uploadedAt": "2024-01-15T10:30:00Z",
+    "description": "Örnek ölçü taslağı dosyası"
+  },
+  {
+    "id": "DOC-002",
+    "jobId": "JOB-EXAMPLE",
+    "type": "teknik",
+    "filename": "ornek_teknik_cizim.pdf",
+    "originalName": "Teknik Çizim Örnek.pdf",
+    "path": "documents/teknik/ornek_teknik_cizim.pdf",
+    "mimeType": "application/pdf",
+    "size": 204800,
+    "uploadedBy": "Sistem",
+    "uploadedAt": "2024-01-15T11:00:00Z",
+    "description": "Örnek teknik çizim dosyası"
+  }
+]
